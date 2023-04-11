@@ -1,0 +1,67 @@
+*{
+    box-sizing: border-box;
+}
+
+.body {
+    background-color: #E5E5E5;
+}
+/*-----------------------------------------*/
+.top_bar {
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 80px;
+    background-color: #FFFFFF;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.05);
+    margin-bottom: 22px;
+}
+
+.logo {
+    margin-left: 22px;
+}
+
+.people_button {
+    margin-right: 22px;        
+    font-size: 48px;
+}
+/*-----------------------------------------*/
+.bottom_bar {
+    position: fixed;
+    z-index: 1;
+    bottom: 0;
+    right: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 80px;
+    width: 100%;
+    background: #FFFFFF;
+    box-shadow: 0px -4px 6px rgba(0, 0, 0, 0.05);
+}
+
+.send_button {
+    margin-right: 18px;
+    font-size: 36px;
+}
+
+.input_message {
+    width: 81%;
+    height: 30px;
+    margin-left: 17px;
+    font-family: 'Roboto';
+    font-style: italic;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 21px;
+    color: #000000;
+    border: none;
+}
+
+::placeholder {
+    color: #000000;
+}
