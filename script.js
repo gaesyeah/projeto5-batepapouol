@@ -50,10 +50,11 @@ function user_status() {
         name: user_name
     };
 
-    const await_promise = axios.post('https://mock-api.driven.com.br/api/vm/uol/participants', on_off);
-    await_promise.catch(user_off);
+    const await_promise = axios.post('https://mock-api.driven.com.br/api/vm/uol/status', on_off);
+    await_promise.then(user_inactive);
 }
-function user_off(reply) {
+
+function user_inactive(reply) {
 
     console.log('inativo por 5s')
 
