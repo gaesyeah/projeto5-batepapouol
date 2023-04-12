@@ -1,6 +1,6 @@
 axios.defaults.headers.common['Authorization'] = 'xXBbaHJJgCIsOXZfEH3Mf6s7';
 //VARIAVEIS GLOBAIS
-let message, user_name, stopInterval;
+let message, user_name;
 //--------------------------
 function login() {
 
