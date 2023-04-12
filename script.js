@@ -54,7 +54,7 @@ function user_status() {
     await_promise.then(user_inactive);
 }
 
-function user_inactive(reply) {
+function user_inactive() {
 
     console.log('verificado após 5 segundos')
 
