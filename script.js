@@ -56,7 +56,7 @@ function user_status() {
 
 function user_inactive(reply) {
 
-    console.log('inativo por 5s')
+    console.log('verificado após 5 segundos')
 
 }
 
