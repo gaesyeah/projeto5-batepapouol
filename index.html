@@ -15,11 +15,46 @@
 <body>
     <!------------------------------>
     <div class="side_bar hide">
-        <div onclick="close_menu() "class="OUT_bar">
-
-        </div>
+        <div onclick="toggle_menu() "class="OUT_bar"></div>
         <div class="IN_bar">
-
+            <div class="TO-box box">
+                <p class="text_option">Escolha um contato<br>para enviar mensagem:<br></p>
+                <div class="TO-select select">
+                    <div id="TO-option" onclick="TOclicked()" class="option" >
+                        <div class="adjust">
+                            <ion-icon class="icon_size" name="people"></ion-icon>
+                            <p class="text_option text_select">Todos</p>
+                        </div>
+                        <ion-icon class="check" name="checkmark-sharp"></ion-icon>
+                    </div>
+                    <div id="TO-option" onclick="TOclicked()" class="option" >
+                        <div class="adjust">
+                            <ion-icon class="icon_size" name="person-circle-sharp"></ion-icon>
+                            <p class="text_option text_select">teste1</p>
+                        </div>
+                        <ion-icon class="check" name="checkmark-sharp"></ion-icon>
+                    </div>
+                </div>
+            </div>
+            <div class="TYPE-box box">
+                <p class="text_option">Escolha a visiblidade:</p>
+                <div class="TYPE-select select">
+                    <div id="TYPE-option" onclick="TYPEclicked()" class="option" >
+                        <div class="adjust">
+                            <ion-icon class="icon_size" name="lock-open-sharp"></ion-icon>
+                            <p class="text_option text_select">Público</p>
+                        </div>
+                        <ion-icon class="check" name="checkmark-sharp"></ion-icon>
+                    </div>
+                    <div id="TYPE-option" onclick="TYPEclicked()" class="option" >
+                        <div class="adjust">
+                            <ion-icon class="icon_size" name="lock-closed-sharp"></ion-icon>
+                            <p class="text_option text_select">Reservadamente</p>
+                        </div>
+                        <ion-icon class="check" name="checkmark-sharp"></ion-icon>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
     <!------------------------------>
@@ -39,7 +74,7 @@
     <!------------------------------>
     <div class="top_bar">
         <img class ="logo" src="./images/logo 1.png" />
-        <ion-icon onclick="open_menu()" class ="people_button" name="people"></ion-icon>
+        <ion-icon onclick="toggle_menu()" class ="people_button" name="people"></ion-icon>
     </div>
 
     <div class ="messages_container">

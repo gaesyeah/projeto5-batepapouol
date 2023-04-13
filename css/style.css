@@ -17,15 +17,82 @@ body {
     height: 100%;
     position: absolute;
     display: flex;
+    /*sem um margin top com a altura da top_bar a parte da função toggle_menu que tira o scroll do body deixa a side_bar má posicionada*/
     margin-top: 80px;
 }
 .IN_bar {
     width: 69%;
     background-color: #FFFFFF;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 .OUT_bar {
     width: 31%;
     background-color: rgba(0, 0, 0, 0.6);
+}
+/*-------*/
+.adjust {
+    display: flex;
+}
+.box {
+    top: 0;
+    width: 65%;
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.TO-box {
+    margin-top: 32px;
+}
+.TYPE-box {
+    margin-top: 262px;
+}
+/*-------------------*/
+.TO-select {
+    overflow-y: scroll;
+    height: 128px;
+}
+.select {
+    width: 100%;
+}
+.option {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 35px;
+    width: 100%;
+    margin-bottom: 2px;
+    background-color: #FFFFFF;
+}
+/*-------*/
+.text_option {
+    margin-bottom: 30px;
+    text-align: center;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 19px;
+    color: #000000;  
+}
+.text_select {
+    margin-bottom: 0px;
+    font-weight: 400;
+}
+.icon_size {
+    margin-top: -6px;
+    color: #000000;
+    font-size: 30px;
+    margin-right:5px;
+}
+.check {
+    color: #ffffff00;
+    font-size: 20px;
+}
+.check_selected {
+    color: #28BB25;
 }
 /*-----------------------------------------*/
 .login_screen {
@@ -165,6 +232,7 @@ body {
 }
 
 .people_button {
+    color: #000000;;
     margin-right: 22px;        
     font-size: 48px;
 }

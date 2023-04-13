@@ -160,23 +160,24 @@ function renderCHAT(historyCHAT) {
 }
 
 //------------------------------------------------------
-function open_menu() {
+function toggle_menu() {
 
-    //mostra a barra na tela
+    //mostra/esconde a barra na tela
     const display_bar = document.querySelector('.side_bar');
-    display_bar.classList.remove('hide');
+    display_bar.classList.toggle('hide');
 
-    //tira a rolagem de todo o body, para a barra ficar por cima de toda a tela independente do que o usuario faça
+    //bota/tira a rolagem de todo o body, para a barra ficar por cima de toda a tela independente do que o usuario faça
     const KILLoverflow = document.querySelector('body');
-    KILLoverflow.classList.add('OUToverflow');
+    KILLoverflow.classList.toggle('OUToverflow');
 }
-function close_menu() {
 
-    //esconde a barra da tela
-    const display_bar = document.querySelector('.side_bar');
-    display_bar.classList.add('hide');
+//---------------------------------------------------------------------------------------------
+//---------------------------------------SIDEBAR(MENU)-----------------------------------------
 
-    //tira a rolagem de todo o body, para a barra ficar por cima de toda a tela independente do que o usuario faça
-    const KILLoverflow = document.querySelector('body');
-    KILLoverflow.classList.remove('OUToverflow');
+function TOclicked() {
+
+}
+
+function TYPEclicked() {
+
 }
