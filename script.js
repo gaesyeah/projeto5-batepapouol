@@ -122,24 +122,12 @@ function renderCHAT(historyCHAT) {
 
         if (["Message", "message", "Message:", "message:"].includes(entireCHAT[i].type)) { //se for uma mensagem
 
-            if (!["Todos", "todos", "Todos:", "todos:"].includes(entireCHAT[i].to)) {//se for uma mensagem PRIVADA
-
-                    message.innerHTML += `
-                    <div class="message_box reservedMSG">
-                        <p class="time">(${entireCHAT[i].time})</p>
-                        <p class="message"><strong>${entireCHAT[i].from}</strong> reservadamente para <strong>${entireCHAT[i].to}:</strong> ${entireCHAT[i].text}</p>
-                    </div>
-                `;
-            } else {//se for uma mensagem para todos/Todos
-
-                message.innerHTML += `
-                <div class="message_box">
-                    <p class="time">(${entireCHAT[i].time})</p>
-                    <p class="message"><strong>${entireCHAT[i].from}</strong> para <strong>${entireCHAT[i].to}:</strong> ${entireCHAT[i].text}</p>
-                </div>
-            `;
-            }
-
+            message.innerHTML += `
+            <div class="message_box">
+                <p class="time">(${entireCHAT[i].time})</p>
+                <p class="message"><strong>${entireCHAT[i].from}</strong> para <strong>${entireCHAT[i].to}:</strong> ${entireCHAT[i].text}</p>
+            </div>
+        `;
         } else { //se não for uma mensagem, OU SEJA, se entrou ou saiu (type: "status")
 
             message.innerHTML += `
