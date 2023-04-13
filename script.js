@@ -1,7 +1,7 @@
 axios.defaults.headers.common['Authorization'] = 'xXBbaHJJgCIsOXZfEH3Mf6s7';
 
 //VARIAVEIS GLOBAIS
-let message, user_name, entireCHAT;
+let message, user_name, entireCHAT, nameMENU, online;
 //--------------------------
 
 //COMEÇA AQUI, quando o usuario faz o login
@@ -33,6 +33,7 @@ function login() {
 
 function login_success(reply) {
 
+    RESET_saveMENU(); //reseta e renderiza o TO do menu
     reset_saveCHAT(); //reseta e renderiza o chat
 
     console.log(`${reply.status}; ${user_name} logou com sucesso`);
@@ -193,7 +194,6 @@ function TOclicked(clicked) {
     //muda a cor do check para verde
     const ADDcheck = clicked.querySelector('.option .check');
     ADDcheck.classList.add('check_selected');
-
 }
 
 function TYPEclicked(clicked) {
@@ -215,4 +215,51 @@ function TYPEclicked(clicked) {
     const ADDcheck = clicked.querySelector('.option .check');
     ADDcheck.classList.add('check_selected');
 
+}
+
+//--------------------------------------------------------------------------------
+
+function RESET_saveMENU() { //é chamada a cada 10 segundos e quando o usuario faz login
+
+    nameMENU = [];
+
+    //vai fazer uma requisição para o servidor pedindo o nome dos usuarios ativos
+    const ACTIVE_users = axios.get('https://mock-api.driven.com.br/api/vm/uol/participants')
+    //a função onlineUSERS é chamada quando a requisição recebe um retorno
+    ACTIVE_users.then(onlineUSERS);
+    
+}
+setInterval(RESET_saveMENU, 10000); //chama a função para renderizar o menu a cada 10 segundos
+
+function onlineUSERS(users) {
+
+    let name = document.querySelector('.TO-select');
+    //reseta o conteudo da div TO-select para incluir a opção padrão: Todos
+    name.innerHTML = ` 
+        <div onclick="TOclicked(this)" class="option" >
+            <div class="adjust">
+                <ion-icon class="icon_size" name="people"></ion-icon>
+                <p class="text_option text_select">Todos</p>
+            </div>
+            <ion-icon class="check" name="checkmark-sharp"></ion-icon>
+        </div>
+    `;
+
+    //é guardado num array o nome de todos os usuarios online, RETORNADO pelo servidor na função RESET_saveMENU
+    online = [];
+    online = users.data;
+
+    //é renderizado na tela as divs com os nomes dos usuarios online
+    for(i=0; i<online.length; i++) {
+
+        name.innerHTML += `
+            <div onclick="TOclicked(this)" class="option" >
+                <div class="adjust">
+                    <ion-icon class="icon_size" name="person-circle-sharp"></ion-icon>
+                    <p class="text_option text_select">${online[i].name}</p>
+                </div>
+                <ion-icon class="check" name="checkmark-sharp"></ion-icon>
+            </div>
+        `;
+    }
 }
