@@ -203,6 +203,7 @@ body {
     margin-right: 9px;
     margin-top: 12px;
     margin-bottom: 12px;
+    word-break: break-word;
 }
 
 .ENTERorEXIT {

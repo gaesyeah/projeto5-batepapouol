@@ -4,7 +4,8 @@ axios.defaults.headers.common['Authorization'] = 'xXBbaHJJgCIsOXZfEH3Mf6s7';
 let message, user_name, entireCHAT, nameMENU, online;
 //--------------------------
 
-//COMEÇA AQUI, quando o usuario faz o login
+//COMEÇA AQUI, quando o usuario faz o login 
+//(além das funções RESET_saveMENU e reset_saveCHAT que são chamadas a cada 10 e 3 segundos respectivamente, antes mesmo do login)
 function login() {
 
     //troca a interface de login pela de loading
@@ -14,7 +15,7 @@ function login() {
     show_loading.classList.remove('hide');
 
     document.querySelector('.input_message').value = ""; //apaga o texto atual no input (só para limpar o input caso o usuario digite algo, não envie e dê F5)
-    //não fiz isso com o login para caso o usuario queira entrar com o mesmo nome, fica salvo lá
+    //não fiz isso com o login pq, para caso o usuario queira entrar com o mesmo nome, fica salvo lá
 
     const login_input = document.querySelector('.login_input');
     user_name = login_input.value;
@@ -34,6 +35,7 @@ function login() {
 function login_success(reply) {
 
     RESET_saveMENU(); //reseta e renderiza o TO do menu
+    //(BOTEI "TO" NO NOME DAS CLASSES HTML E EM ALGUMAS PARTES DO JS, MAS DESCOBRI DEPOIS QUE O CERTO É "FROM")
     reset_saveCHAT(); //reseta e renderiza o chat
 
     console.log(`${reply.status}; ${user_name} logou com sucesso`);
@@ -107,7 +109,7 @@ function send_success() {
     document.querySelector('.input_message').value = ""; //apaga o texto atual no input após a mensagem ser renderizada na tela
 }
 
-function send_error() {
+function send_error() { //mas caso o usuario fique com o chat aberto, nunca vai dar esse erro
 
     alert('você foi desconectado por inatividade, entre novamente');
     window.location.reload()
@@ -122,7 +124,7 @@ function reset_saveCHAT() {
     await_promise.then(renderCHAT);
 }
 
-setInterval(reset_saveCHAT, 3000); //chama a função para resetar a página a cada 3 segundos
+setInterval(reset_saveCHAT, 3000); //chama a função para resetar a página a cada 3 segundos (INICIA AO ENTRAR NA PAGINA MESMO)
 
 function renderCHAT(historyCHAT) {
 
@@ -173,10 +175,12 @@ function toggle_menu() {
 }
 
 //---------------------------------------------------------------------------------------------
-//--------------------------------------SIDEBAR(MENU)-----------------------------------------
+//--------------------------------------SIDEBAR(MENU)------------------------------------------
 
 //DÁ PARA FAZER COM SOMENTE UMA FUNÇÃO USANDO MAIS PARAMETROS, O MR PINK ENSINOU A FAZER ISSO NO PROJETO DRIVEN EATS
 function TOclicked(clicked) {
+
+    //SÓ VAI ENTRAR NESSES IFS APÓS O USUARIO JÁ TER CLICADO UMA VEZ, OU SEJA, NO SEGUNDO CLIQUE
 
     //se dentro da div com classe TO-select tiver alguma div com a classe selected, a mesma será removida
     const VERIFYselected = document.querySelector('.TO-select .selected');
@@ -198,6 +202,8 @@ function TOclicked(clicked) {
 
 function TYPEclicked(clicked) {
 
+    //SÓ VAI ENTRAR NESSES IFS APÓS O USUARIO JÁ TER CLICADO UMA VEZ, OU SEJA, NO SEGUNDO CLIQUE
+    
     //se dentro da div com classe TYPE-select tiver alguma div com classe selected, a mesma será removida
     const VERIFYselected = document.querySelector('.TYPE-select .selected')
     if (VERIFYselected !== null) {
@@ -224,12 +230,12 @@ function RESET_saveMENU() { //é chamada a cada 10 segundos e quando o usuario f
     nameMENU = [];
 
     //vai fazer uma requisição para o servidor pedindo o nome dos usuarios ativos
-    const ACTIVE_users = axios.get('https://mock-api.driven.com.br/api/vm/uol/participants')
+    const await_promise = axios.get('https://mock-api.driven.com.br/api/vm/uol/participants')
     //a função onlineUSERS é chamada quando a requisição recebe um retorno
-    ACTIVE_users.then(onlineUSERS);
+    await_promise.then(onlineUSERS);
     
 }
-setInterval(RESET_saveMENU, 10000); //chama a função para renderizar o menu a cada 10 segundos
+setInterval(RESET_saveMENU, 10000); //chama a função para renderizar o menu a cada 10 segundos (INICIA AO ENTRAR NA PAGINA MESMO)
 
 function onlineUSERS(users) {
 
