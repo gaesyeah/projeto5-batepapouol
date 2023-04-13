@@ -5,6 +5,8 @@ let message, user_name, entireCHAT;
 //--------------------------
 function login() {
 
+    document.querySelector('.input_message').value = ""; //apaga o texto atual no input (só para limpar o input caso o usuario digite algo, não envie e dê F5)
+
     user_name = prompt('Qual o seu nome?');
 
     const user_login = {
