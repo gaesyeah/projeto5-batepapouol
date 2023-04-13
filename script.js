@@ -210,8 +210,8 @@ function TYPEclicked(clicked) {
     const ADDcheck = clicked.querySelector('.option .check');
     ADDcheck.classList.add('check_selected');
 //------salva o texto numa variavel
-    const FROM = clicked.querySelector('.text_select').innerHTML;
-    console.log(FROM);
+    const TYPE = clicked.querySelector('.text_select').innerHTML;
+    console.log(TYPE);
 }
 
 //--------------------------------------------------------------------------------
