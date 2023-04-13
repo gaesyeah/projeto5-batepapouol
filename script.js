@@ -158,3 +158,25 @@ function renderCHAT(historyCHAT) {
     window.scrollTo(0, scrollTOend);
 
 }
+
+//------------------------------------------------------
+function open_menu() {
+
+    //mostra a barra na tela
+    const display_bar = document.querySelector('.side_bar');
+    display_bar.classList.remove('hide');
+
+    //tira a rolagem de todo o body, para a barra ficar por cima de toda a tela independente do que o usuario faça
+    const KILLoverflow = document.querySelector('body');
+    KILLoverflow.classList.add('OUToverflow');
+}
+function close_menu() {
+
+    //esconde a barra da tela
+    const display_bar = document.querySelector('.side_bar');
+    display_bar.classList.add('hide');
+
+    //tira a rolagem de todo o body, para a barra ficar por cima de toda a tela independente do que o usuario faça
+    const KILLoverflow = document.querySelector('body');
+    KILLoverflow.classList.remove('OUToverflow');
+}

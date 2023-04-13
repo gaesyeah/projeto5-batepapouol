@@ -14,6 +14,15 @@
 </head>
 <body>
     <!------------------------------>
+    <div class="side_bar hide">
+        <div onclick="close_menu() "class="OUT_bar">
+
+        </div>
+        <div class="IN_bar">
+
+        </div>
+    </div>
+    <!------------------------------>
     <div class ="login_screen">
         <div class="login_box">
             <img class="login_logo"src="./images/logo 2.png" />
@@ -30,7 +39,7 @@
     <!------------------------------>
     <div class="top_bar">
         <img class ="logo" src="./images/logo 1.png" />
-        <ion-icon class ="people_button" name="people"></ion-icon>
+        <ion-icon onclick="open_menu()" class ="people_button" name="people"></ion-icon>
     </div>
 
     <div class ="messages_container">
