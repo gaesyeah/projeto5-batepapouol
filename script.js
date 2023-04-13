@@ -47,10 +47,10 @@ function user_status() {
     };
 
     const await_promise = axios.post('https://mock-api.driven.com.br/api/vm/uol/status', status);
-    await_promise.then(user_inactive);
+    await_promise.then(user_active);
 }
 
-function user_inactive(reply) {
+function user_active(reply) {
 
     console.log(`${reply.status}; Verificado após 5 segundos`)
 
