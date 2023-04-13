@@ -1,6 +1,7 @@
 axios.defaults.headers.common['Authorization'] = 'xXBbaHJJgCIsOXZfEH3Mf6s7';
+
 //VARIAVEIS GLOBAIS
-let message, user_name;
+let message, user_name, entireCHAT;
 //--------------------------
 function login() {
 
@@ -40,17 +41,19 @@ function login_error(reply) {
 
     alert('Já existe um usuario ativo logado com esse nome, tente novamente com outro');
     //chama função login novamente caso o axios retorne um erro, nesse caso vai ser o status 400
+
+    //MUDAR PARA REINICIAR A PAGINA APÓS A INTERFACE DE LOGIN SER IMPLEMENTADA
     login();
 }
 //-------
 
 function user_status() {
 
-    const on_off = {
+    const status = {
         name: user_name
     };
 
-    const await_promise = axios.post('https://mock-api.driven.com.br/api/vm/uol/status', on_off);
+    const await_promise = axios.post('https://mock-api.driven.com.br/api/vm/uol/status', status);
     await_promise.then(user_inactive);
 }
 
@@ -103,3 +106,55 @@ function send_error(reply) {
     return;
 }
 //----------------------------------------------------------
+
+function reset_saveCHAT() {
+
+    entireCHAT = [];
+
+    const await_promise = axios.get('https://mock-api.driven.com.br/api/vm/uol/messages');
+    await_promise.then(renderCHAT);
+}
+
+setInterval(reset_saveCHAT, 3000); //chama a função para resetar a página a cada 3 segundos
+
+function renderCHAT(historyCHAT) {
+
+    entireCHAT = historyCHAT.data;
+    console.log(entireCHAT);
+
+    message = document.querySelector('.messages_container');
+    message.innerHTML = ''; //reseta o chat
+
+    for(i=0; i<entireCHAT.length; i++) {
+
+        if (["Message", "message", "Message:", "message:"].includes(entireCHAT[i].type)) { //se for uma mensagem
+
+            if (!["Todos", "todos", "Todos:", "todos:"].includes(entireCHAT[i].to)) {//se for uma mensagem PRIVADA
+
+                    message.innerHTML += `
+                    <div class="message_box reservedMSG">
+                        <p class="time">(${entireCHAT[i].time})</p>
+                        <p class="message"><strong>${entireCHAT[i].from}</strong> reservadamente para <strong>${entireCHAT[i].to}:</strong> ${entireCHAT[i].text}</p>
+                    </div>
+                `;
+            } else {//se for uma mensagem para todos/Todos
+
+                message.innerHTML += `
+                <div class="message_box">
+                    <p class="time">(${entireCHAT[i].time})</p>
+                    <p class="message"><strong>${entireCHAT[i].from}</strong> para <strong>${entireCHAT[i].to}:</strong> ${entireCHAT[i].text}</p>
+                </div>
+            `;
+            }
+
+        } else { //se não for uma mensagem, OU SEJA, se entrou ou saiu
+
+            message.innerHTML += `
+            <div class="message_box ENTERorEXIT">
+                <p class="time">(${entireCHAT[i].time})</p>
+                <p class="message"><strong>${entireCHAT[i].from}</strong> ${entireCHAT[i].text}</p>
+            </div>
+        `;
+        }
+    }
+}

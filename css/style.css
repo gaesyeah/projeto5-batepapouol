@@ -71,7 +71,8 @@ body {
 .messages_container {
     display: flex;
     flex-direction: column;
-    margin-top: 102px;
+    margin-top: 106px;
+    margin-bottom: 80px;
     background-color: #F3F3F3;
 
 }
@@ -103,6 +104,10 @@ body {
 
 .ENTERorEXIT {
     background-color: #DCDCDC;
+}
+
+.reservedMSG {
+    background-color: #FFDEDE;
 }
 /*-----------------------------------------*/
 .top_bar {
