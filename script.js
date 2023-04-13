@@ -183,13 +183,13 @@ function TOclicked(clicked) {
     //SÓ VAI ENTRAR NESSE IF APÓS O USUARIO JÁ TER CLICADO UMA VEZ, OU SEJA, NO SEGUNDO CLIQUE
 
     //se dentro da div com classe option, que está dentro da div com classe TO-select, tiver alguma div com classe .check_selected, a mesma será removida
-    const VERIFYcheck = document.querySelector('.TO-select .option .check_selected');
+    const VERIFYcheck = document.querySelector('.TO-select .check_selected');
     if (VERIFYcheck !== null) {
         VERIFYcheck.classList.remove('check_selected');
     }
     
     //muda a cor do check para verde
-    const ADDcheck = clicked.querySelector('.option .check');
+    const ADDcheck = clicked.querySelector('.check');
     ADDcheck.classList.add('check_selected');
 //------salva o texto numa variavel
     const FROM = clicked.querySelector('.text_select').innerHTML;
@@ -201,13 +201,13 @@ function TYPEclicked(clicked) {
     //SÓ VAI ENTRAR NESSE IF APÓS O USUARIO JÁ TER CLICADO UMA VEZ, OU SEJA, NO SEGUNDO CLIQUE
     
     //se dentro da div com classe option, que está dentro da div com classe TYPE-select, tiver alguma div com classe .chack-selected, a mesma será removida
-    const VERIFYcheck = document.querySelector('.TYPE-select .option .check_selected')
+    const VERIFYcheck = document.querySelector('.TYPE-select .check_selected')
     if (VERIFYcheck !== null) {
         VERIFYcheck.classList.remove('check_selected');
     }
     
     //muda a cor do check para verde
-    const ADDcheck = clicked.querySelector('.option .check');
+    const ADDcheck = clicked.querySelector('.check');
     ADDcheck.classList.add('check_selected');
 //------salva o texto numa variavel
     const TYPE = clicked.querySelector('.text_select').innerHTML;
