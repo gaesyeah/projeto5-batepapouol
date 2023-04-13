@@ -3,11 +3,21 @@ axios.defaults.headers.common['Authorization'] = 'xXBbaHJJgCIsOXZfEH3Mf6s7';
 //VARIAVEIS GLOBAIS
 let message, user_name, entireCHAT;
 //--------------------------
+
+//COMEÇA AQUI, quando o usuario faz o login
 function login() {
 
-    document.querySelector('.input_message').value = ""; //apaga o texto atual no input (só para limpar o input caso o usuario digite algo, não envie e dê F5)
+    //troca a interface de login pela de loading
+    const hide_login = document.getElementById('remove');
+    hide_login.classList.add('hide');
+    const show_loading = document.getElementById('add');
+    show_loading.classList.remove('hide');
 
-    user_name = prompt('Qual o seu nome?');
+    document.querySelector('.input_message').value = ""; //apaga o texto atual no input (só para limpar o input caso o usuario digite algo, não envie e dê F5)
+    //não fiz isso com o login para caso o usuario queira entrar com o mesmo nome, fica salvo lá
+
+    const login_input = document.querySelector('.login_input');
+    user_name = login_input.value;
 
     const user_login = {
         name: user_name
@@ -19,16 +29,20 @@ function login() {
     await_promise.catch(login_error);
 }
 
-//TUDO COMEÇA AQUI, QUANDO A PÁGINA É ABERTA
-login();
 //------------------------------------------------------
 
 function login_success(reply) {
 
     reset_saveCHAT(); //reseta e renderiza o chat
 
-    console.log(reply.status);
-    alert('Você logou com sucesso!');
+    console.log(`${reply.status}; ${user_name} logou com sucesso`);
+
+    //esconde a tela de login
+    const hide_screen = document.querySelector('.login_screen');
+    hide_screen.classList.add('hide');
+    const hide_box = document.querySelector('.login_box');
+    hide_box.classList.add('hide');
+
 
     //chama a função user_status() a cada 5 segundos para verificar se o usuario está ativo, ou seja, digitando
     setInterval(user_status, 5000);
@@ -63,8 +77,8 @@ function user_active(reply) {
 //essa função é chamada quando o usuario envia uma mensagem
 function send(){
 
-    let input = document.querySelector('.input_message');
-    let input_send = input.value;
+    const input = document.querySelector('.input_message');
+    const input_send = input.value;
 
     if (input_send == "") {
         return; //para parar a execuçao da função caso o usuario envie uma mensagem "vazia"

@@ -14,11 +14,17 @@
 </head>
 <body>
     <!------------------------------>
-    <div class ="login_screen hide_screen">
-        <div class="login_box hide_screen">
+    <div class ="login_screen">
+        <div class="login_box">
             <img class="login_logo"src="./images/logo 2.png" />
-            <input class="login_input" placeholder="Digite seu nome"></input>
-            <div onclick="user_login(this)" class="login_button">Entrar</div>
+            <div id="remove" class="box_to_toggle">
+                <input class="login_input" placeholder="Digite seu nome"></input>
+                <div onclick="login()" class="login_button">Entrar</div>
+            </div>
+            <div id="add" class ="box_to_toggle hide">
+                <img class ="loading_gif"src="./images/loading-gif.gif" />
+                <p class ="loading_text">Entrando...</p>
+            </div>
         </div>
     </div>
     <!------------------------------>

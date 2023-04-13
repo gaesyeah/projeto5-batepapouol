@@ -31,11 +31,27 @@ body {
     justify-content: center;
     background-color: #FFFFFF;
 }
-.hide_screen {
-    display: none;
-}
 .login_logo {
     margin-bottom: 94px;
+}
+.box_to_toggle {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.loading_gif {
+    width: 94px;
+    height: auto;
+    margin-bottom: 8px;
+}
+.loading_text {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 25px;
+    color: #000000;
 }
 .login_input {
     border: 1px solid #D7D7D7;
@@ -66,6 +82,9 @@ body {
     border-radius: 9px;
     width: 109px;
     height: 45px;
+}
+.hide {
+    display: none;
 }
 /*-----------------------------------------*/
 .messages_container {
