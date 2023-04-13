@@ -23,27 +23,20 @@ login();
 
 function login_success(reply) {
 
+    reset_saveCHAT(); //reseta e renderiza o chat
+
     console.log(reply.status);
     alert('Você logou com sucesso!');
 
     //chama a função user_status() a cada 5 segundos para verificar se o usuario está ativo, ou seja, digitando
     setInterval(user_status, 5000);
-
-/*     message = document.querySelector('.messages_container');
-    message.innerHTML += `
-        <div class="message_box ENTERorEXIT">
-            <p class="time">(00:00:00)</p>
-            <p class="message"><strong>${user_name}</strong> entra na sala...</p>
-        </div>
-    `; */
 }
 function login_error(reply) {
 
     alert('Já existe um usuario ativo logado com esse nome, tente novamente com outro');
-    //chama função login novamente caso o axios retorne um erro, nesse caso vai ser o status 400
 
-    //MUDAR PARA REINICIAR A PAGINA APÓS A INTERFACE DE LOGIN SER IMPLEMENTADA
-    login();
+    //reinicia a página caso o axios retorne um erro, nesse caso vai ser o status 400
+    window.location.reload()
 }
 //-------
 
@@ -57,9 +50,9 @@ function user_status() {
     await_promise.then(user_inactive);
 }
 
-function user_inactive() {
+function user_inactive(reply) {
 
-    console.log('verificado após 5 segundos')
+    console.log(`${reply.status}; Verificado após 5 segundos`)
 
 }
 
@@ -89,21 +82,18 @@ function send(){
 
 }
 
-//caso a mensagem seja enviada ao servidor sem erros, a mensagem é guardada no servidor e a renderizada na tela
-function send_success(reply) {
+//caso a mensagem seja enviada ao servidor sem erros
+function send_success() {
 
-    /*     message.innerHTML += `
-        <div class="message_box">
-            <p class="time">(00:00:00)</p>
-            <p class="message"><strong>${user_name}</strong> para <strong>todos</strong>: ${input_send}</p>
-        </div>
-    `; */
+    reset_saveCHAT(); //reseta e renderiza o chat
+
     document.querySelector('.input_message').value = ""; //apaga o texto atual no input após a mensagem ser renderizada na tela
-
 }
 
-function send_error(reply) {
-    return;
+function send_error() {
+
+    alert('você foi desconectado por inatividade, entre novamente');
+    window.location.reload()
 }
 //----------------------------------------------------------
 
@@ -120,6 +110,7 @@ setInterval(reset_saveCHAT, 3000); //chama a função para resetar a página a c
 function renderCHAT(historyCHAT) {
 
     entireCHAT = historyCHAT.data;
+    console.log(historyCHAT);
     console.log(entireCHAT);
 
     message = document.querySelector('.messages_container');
@@ -147,7 +138,7 @@ function renderCHAT(historyCHAT) {
             `;
             }
 
-        } else { //se não for uma mensagem, OU SEJA, se entrou ou saiu
+        } else { //se não for uma mensagem, OU SEJA, se entrou ou saiu (type: "status")
 
             message.innerHTML += `
             <div class="message_box ENTERorEXIT">
