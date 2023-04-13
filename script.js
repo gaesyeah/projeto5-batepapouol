@@ -174,10 +174,27 @@ function toggle_menu() {
 //---------------------------------------------------------------------------------------------
 //---------------------------------------SIDEBAR(MENU)-----------------------------------------
 
-function TOclicked() {
+function TOclicked(clicked) {
+
+    //se dentro da div com classe TO-select tiver alguma div com a classe selected, a mesma será removida
+    const VERIFYselected = document.querySelector('.TO-select .selected');
+    if (VERIFYselected !== null) {
+        VERIFYselected.classList.remove('selected');
+    }
+    //se dentro da div com classe option , dentro da div com classe TO-select, tiver alguma div com classe .check_selected, a mesma será removida
+    const VERIFYcheck = document.querySelector('.TO-select .option .check_selected');
+    if (VERIFYcheck !== null) {
+        VERIFYcheck.classList.remove('check_selected');
+    }
+    
+    //adiciona a classe selected na div clicada
+    clicked.classList.add('selected');
+    //muda a cor do check para verde
+    const ADDcheck = clicked.querySelector('.option .check');
+    ADDcheck.classList.add('check_selected');
 
 }
 
-function TYPEclicked() {
+function TYPEclicked(clicked) {
 
 }
