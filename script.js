@@ -152,4 +152,9 @@ function renderCHAT(historyCHAT) {
         `;
         }
     }
+
+    //dá scroll para o final da página
+    const scrollTOend = document.body.scrollHeight;
+    window.scrollTo(0, scrollTOend);
+
 }
