@@ -67,14 +67,23 @@ function login_error(reply) {
 
     const status = reply.response.status;
 
-    console.log(`${status}; Já existe um usuario logado com o nome: ${user_name}`)
-
     if (status === 400) {
+
+        console.log(`${status}; Já existe um usuario logado com o nome: ${user_name}`);
 
         alert('Já existe um usuario ativo logado com esse nome, tente novamente com outro');
 
         //reinicia a página caso o axios retorne um erro, nesse caso vai ser o status 400
         window.location.reload()
+        
+    } else {
+
+        console.log(`${status}; Deu algum erro no servidor`);
+
+        alert('Deu algum erro no servidor, por favor, tente logar novamente mais tarde');
+
+        //reinicia a página caso o axios retorne um erro que não seja o 400
+        window.location.reload();
     }
 
 }
