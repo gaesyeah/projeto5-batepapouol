@@ -284,13 +284,23 @@ body {
 }
 
 .send_button {
+    background-color: rgba(0, 0, 0, 0);
+    color: #000000;
     margin-right: 18px;
     font-size: 36px;
 }
-.send_button:hover {
+.inputONsend_button {
+    border-color: rgba(0, 0, 0, 0);
+    border-radius: 36%;
+    background-color: #F3F3F3;
     color: rgb(50, 212, 18);
     transition-duration: 550ms;
     cursor: pointer;
+}
+.inputOUTsend_button {
+    background-color: rgba(0, 0, 0, 0);
+    color: #000000;
+    transition-duration: 550ms;
 }
 
 .input_message {

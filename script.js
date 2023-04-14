@@ -37,6 +37,11 @@ function login() {
     const await_promise = axios.post('https://mock-api.driven.com.br/api/vm/uol/participants', user_login);
     await_promise.then(login_success);
     await_promise.catch(login_error);
+
+    //adiciona check na div Público, por padrão
+    //nesse caso fazer isso funciona porque a div Público é a primeira da div com classe TYPE-select
+    typeSWITCHcheck = document.querySelector('.TYPE-select .check');
+    typeSWITCHcheck.classList.add('check_selected');
 }
 
 //------------------------------------------------------
@@ -354,12 +359,6 @@ function onlineUSERS(users) {
         toSWITCHcheck = document.querySelector('.TO-select .check');
         toSWITCHcheck.classList.add('check_selected');
 
-        //adiciona novamente o check na div Público, já que a página fica resetando a cada 10s
-        //(E O LOGIN TAMBÉM CHAMA ESSA FUNÇÃO, ASSIM MARCANDO O Público por padrão)
-        //nesse caso fazer isso funciona porque a div Público é a primeira da div com classe TYPE-select
-        typeSWITCHcheck = document.querySelector('.TYPE-select .check');
-        typeSWITCHcheck.classList.add('check_selected');
-
     }
 //------------------------------------
     //é guardado num array o nome de todos os usuarios online, RETORNADO pelo servidor na função RESET_saveMENU
@@ -384,7 +383,7 @@ function onlineUSERS(users) {
                 </div>
             `;
         } else {
-            
+            //não renderiza nada
             console.log(`Quem está online porém já selecionado: ${online[i].name} === ${to}`);
 
         }  
@@ -393,17 +392,41 @@ function onlineUSERS(users) {
 
 }
 
+
 //animação no botão de login
-setInterval(hover,100);
+setInterval(greenARROW,100);
 
-function hover() {
+function greenARROW() {
 
-    let change = document.querySelector('.login_input').value;
-    let changeBUTTON = document.querySelector('.login_button');
+    const change = document.querySelector('.input_message').value;
+    const changeBUTTON = document.querySelector('.send_button');
+    
+    /*tive que já incluir no HTML, diferente do que fiz na função greenBUTTON
+    porque os ionicons tem outras classes predefinidas que estavam dando problema
+    de precedencia com as que eu adicionava pelo JS*/
+    if (change !== "") {
+
+        changeBUTTON.classList.remove('inputOUTsend_button')
+
+    } else {
+
+        changeBUTTON.classList.add('inputOUTsend_button');
+        
+    }
+}
+
+//animação no botão de login
+setInterval(greenBUTTON,100);
+
+function greenBUTTON() {
+
+    const change = document.querySelector('.login_input').value;
+    const changeBUTTON = document.querySelector('.login_button');
 
     if (change !== "") {
 
         changeBUTTON.classList.add('inputONbutton');
+        changeBUTTON.classList.remove('inputOUTbutton');
 
     } else {
 
