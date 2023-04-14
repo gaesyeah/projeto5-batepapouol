@@ -238,6 +238,11 @@ body {
     font-size: 48px;
 }
 /*-----------------------------------------*/
+.column {
+    display: flex;
+    flex-direction: column;
+    width: 83.5%;
+}
 .bottom_bar {
     position: fixed;
     z-index: 1;
@@ -258,9 +263,8 @@ body {
 }
 
 .input_message {
-    width: 77%;
-    height: 30px;
     margin-left: 17px;
+    height: 30px;
     font-family: 'Roboto';
     font-style: italic;
     font-weight: 400;
