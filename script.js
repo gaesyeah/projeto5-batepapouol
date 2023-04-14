@@ -181,7 +181,7 @@ function renderCHAT(historyCHAT) {
         //se for uma mensagem privada E NÃO FOR PRA MIM
         } else if (entireCHAT[i].type === "private_message" && entireCHAT[i].to !== user_name) {
             
-            console.log('mensagem privada que não foi "to" mim foi enviada, então não foi renderizada');
+            console.log('mensagem privada que não foi "to" mim foi enviada, por isso, como esperado não foi renderizada');
 
         } else { //se não for uma mensagem, OU SEJA, se entrou ou saiu (type: "status")
 
@@ -380,7 +380,7 @@ function onlineUSERS(users) {
         nome dessa que já foi renderizada com check_selected*/
         if (to === online[i].name) {
             //não renderiza nada
-            console.log(`Quem está online porém já selecionado: ${online[i].name} === ${to}, por isso não foi renderizado`);
+            console.log(`Quem está online porém já selecionado: ${online[i].name} === ${to}, por isso, como esperado não foi renderizado repetidamente(uma segunda vez)`);
 
         } else if (user_name === online[i].name) {
 
