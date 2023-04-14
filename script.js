@@ -65,6 +65,11 @@ function login_success(reply) {
 
     //chama a função para resetar a página a cada 3 segundos
     setInterval(reset_saveCHAT, 3000);
+    console.log('função para resetar o CHAT chamada automaticamente após 3 segundos');
+    
+    //chama a função para renderizar o menu a cada 10 segundos
+    setInterval(RESET_saveMENU, 10000);
+    console.log('função para resetar o MENU chamada automaticamente após 10 segundos');
 }
 function login_error(reply) {
 
@@ -150,6 +155,8 @@ function send_error() { //mas caso o usuario fique com o chat aberto, nunca(OU N
 //----------------------------------------------------------
 
 function reset_saveCHAT() {
+
+    console.log('chat resetado');
 
     entireCHAT = [];
 
@@ -342,7 +349,6 @@ function RESET_saveMENU() { //é chamada a cada 10 segundos e quando o usuario f
     await_promise.then(onlineUSERS);
     
 }
-setInterval(RESET_saveMENU, 10000); //chama a função para renderizar o menu a cada 10 segundos (INICIA AO ENTRAR NA PAGINA MESMO)
 
 function onlineUSERS(users) {
 
