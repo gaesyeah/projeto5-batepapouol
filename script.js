@@ -65,10 +65,18 @@ function login_success(reply) {
 }
 function login_error(reply) {
 
-    alert('Já existe um usuario ativo logado com esse nome, tente novamente com outro');
+    const status = reply.response.status;
 
-    //reinicia a página caso o axios retorne um erro, nesse caso vai ser o status 400
-    window.location.reload()
+    console.log(`${status}; Já existe um usuario logado com o nome: ${user_name}`)
+
+    if (status === 400) {
+
+        alert('Já existe um usuario ativo logado com esse nome, tente novamente com outro');
+
+        //reinicia a página caso o axios retorne um erro, nesse caso vai ser o status 400
+        window.location.reload()
+    }
+
 }
 //-------
 
@@ -84,7 +92,7 @@ function user_status() {
 
 function user_active(reply) {
 
-    console.log(`${reply.status}; Verificado após 5 segundos`)
+    console.log(`${reply.status}; post após 5 segundos para manter conexão`)
 
 }
 
@@ -173,7 +181,7 @@ function renderCHAT(historyCHAT) {
         //se for uma mensagem privada E NÃO FOR PRA MIM
         } else if (entireCHAT[i].type === "private_message" && entireCHAT[i].to !== user_name) {
             
-            console.log('mensagem privada que não foi pra mim, foi enviada');
+            console.log('mensagem privada que não foi "to" mim foi enviada, então não foi renderizada');
 
         } else { //se não for uma mensagem, OU SEJA, se entrou ou saiu (type: "status")
 
@@ -372,11 +380,11 @@ function onlineUSERS(users) {
         nome dessa que já foi renderizada com check_selected*/
         if (to === online[i].name) {
             //não renderiza nada
-            console.log(`Quem está online porém já selecionado: ${online[i].name} === ${to}`);
+            console.log(`Quem está online porém já selecionado: ${online[i].name} === ${to}, por isso não foi renderizado`);
 
         } else if (user_name === online[i].name) {
 
-            console.log('não dá para mandar mensagem para você mesmo');
+            console.log('como deve ser, div com meu pŕoprio nome NÃO foi renderizada no menu');
 
         } else if (to !== online[i].name) {
 
