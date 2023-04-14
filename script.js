@@ -334,62 +334,61 @@ function onlineUSERS(users) {
         </div>
     `;
 
-    //é guardado num array o nome de todos os usuarios online, RETORNADO pelo servidor na função RESET_saveMENU
-    online = [];
-    online = users.data;
-
-    //é renderizado na tela as divs com os nomes dos usuarios online
-    for(i=0; i<online.length; i++) {
-
+    //para renderizar na tela o to previamente selecionado na função TOclicked(clicked). JÁ COM A CLASSE check_selected
+    //INDEPENDENTE DELE ESTAR ONLINE OU NÃO
+    if (to !== "Todos") {
         name.innerHTML += `
             <div onclick="TOclicked(this)" class="option" >
                 <div class="adjust">
                     <ion-icon class="icon_size" name="person-circle-sharp"></ion-icon>
-                    <p class="text_option text_select">${online[i].name}</p>
+                    <p class="text_option text_select">${to}</p>
                 </div>
-                <ion-icon class="check" name="checkmark-sharp"></ion-icon>
+                <ion-icon class="check check_selected" name="checkmark-sharp"></ion-icon>
             </div>
         `;
-    }
-//-------
-    if (to === "Todos") {
+    } else {
 
-        //para resetar o valor de to
-        //(NÃO FAZ NADA, JÁ QUE SÓ ENTRA NO IF SE ELE JÁ FOR IGUAL A "Todos")
-        /* to = "Todos";
-        console.log(`${to}; O valor de to foi resetado após 10 segundos`);
-
-        //para resetar o valor de type
-        //( TAMBÉM NÃO FAZ NADA, JÁ QUE NÃO É POSSIVEL MANDAR MENSAGEM PRIVADA A "Todos")
-        type = "message";
-        console.log(`${type}; O valor de type foi resetado após 10 segundos`);
-
-        //para atualizar o texto para o valor padrão (Todos)
-        //(SE JÁ ESTÁ EM "Todos", NÃO HÁ PORQUE FAZER ISSO)
-        CHANGEinput = document.querySelector('.column');
-        CHANGEinput.innerHTML = `
-            <input class="input_message" type="text" placeholder="Escreva aqui..."></input>
-        `;
-
-        //(SE JÁ ESTÁ EM "Todos", E NÃO DÁ PRA MANDAR MENSAGEM PRIVADA A TODOS, NÃO HÁ PORQUE FAZER ISSO)
-        //realoca as checks após resetar, seguindo as regras das funções TOclicked(clicked) e TYPEclicked(clicked)
-        //nesse caso fazer isso funciona porque a div "Público" é a primeira da div com classe TYPE-select
-        typeSWITCHcheck = document.querySelector('.TYPE-select .check');
-        typeSWITCHcheck.classList.add('check_selected');
-        //a classe reset10s foi criada unicamente para servir esse proposito
-        const RMReservadamente = document.querySelector('.reset10s .check')
-        if (RMReservadamente !== null) {
-            //remove o check da "Reservadamente"
-            RMReservadamente.classList.remove('check_selected');
-        } */
-        
-        //para adicionar novamente o check na to Todos, já que a página fica resetando a cada 10s
+        //adiciona novamente o check na to Todos, já que a página fica resetando a cada 10s
+        //(E O LOGIN TAMBÉM CHAMA ESSA FUNÇÃO, ASSIM MARCANDO O Todos por padrão)
         //nesse caso fazer isso funciona porque a div "Todos" é a primeira da div com classe TO-select
         toSWITCHcheck = document.querySelector('.TO-select .check');
         toSWITCHcheck.classList.add('check_selected');
-    } else {
 
-        
+        //adiciona novamente o check na div Público, já que a página fica resetando a cada 10s
+        //(E O LOGIN TAMBÉM CHAMA ESSA FUNÇÃO, ASSIM MARCANDO O Público por padrão)
+        //nesse caso fazer isso funciona porque a div Público é a primeira da div com classe TYPE-select
+        typeSWITCHcheck = document.querySelector('.TYPE-select .check');
+        typeSWITCHcheck.classList.add('check_selected');
+
+    }
+//------------------------------------
+    //é guardado num array o nome de todos os usuarios online, RETORNADO pelo servidor na função RESET_saveMENU
+    online = [];
+    online = users.data;
+    //é renderizado na tela as divs com os nomes dos usuarios online
+    for(i=0; i<online.length; i++) {
+        /*na linha 339 será renderizada a div já com check_selected
+        então aqui será renderizada todas as divs EXCETO a com o mesmo
+        nome dessa que já foi renderizada com check_selected*/
+        if (to !== online[i].name) {
+
+            console.log(`Online: ${online[i].name}`);
+            
+            name.innerHTML += `
+                <div onclick="TOclicked(this)" class="option" >
+                    <div class="adjust">
+                        <ion-icon class="icon_size" name="person-circle-sharp"></ion-icon>
+                        <p class="text_option text_select">${online[i].name}</p>
+                    </div>
+                    <ion-icon class="check" name="checkmark-sharp"></ion-icon>
+                </div>
+            `;
+        } else {
+            
+            console.log(`Quem está online porém já selecionado: ${online[i].name} === ${to}`);
+
+        }  
+
     }
 
 }
