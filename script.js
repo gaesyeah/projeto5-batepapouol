@@ -370,7 +370,7 @@ function onlineUSERS(users) {
     }
 }
 
-
+//animação no botão de login
 setInterval(hover,100);
 
 function hover() {
