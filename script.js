@@ -154,8 +154,7 @@ function renderCHAT(historyCHAT) {
 
             message.innerHTML += `
             <div class="message_box">
-                <p class="time">(${entireCHAT[i].time})</p>
-                <p class="message"><strong>${entireCHAT[i].from}</strong> para <strong>${entireCHAT[i].to}:</strong> ${entireCHAT[i].text}</p>
+                <p class="message"><span class="time">(${entireCHAT[i].time})</span> <strong>${entireCHAT[i].from}</strong> para <strong>${entireCHAT[i].to}:</strong> ${entireCHAT[i].text}</p>
             </div>
         `;
         //se for uma mensagem privada para mim
@@ -168,8 +167,7 @@ function renderCHAT(historyCHAT) {
 
             message.innerHTML += `
             <div class="message_box reservedMSG">
-                <p class="time">(${entireCHAT[i].time})</p>
-                <p class="message"><strong>${entireCHAT[i].from}</strong> reservadamente para <strong>${entireCHAT[i].to}:</strong> ${entireCHAT[i].text}</p>
+                <p class="message"><span class="time">(${entireCHAT[i].time})</span> <strong>${entireCHAT[i].from}</strong> reservadamente para <strong>${entireCHAT[i].to}:</strong> ${entireCHAT[i].text}</p>
             </div>
         `;
         //se for uma mensagem privada E NÃO FOR PRA MIM
@@ -181,8 +179,7 @@ function renderCHAT(historyCHAT) {
 
             message.innerHTML += `
             <div class="message_box ENTERorEXIT">
-                <p class="time">(${entireCHAT[i].time})</p>
-                <p class="message"><strong>${entireCHAT[i].from}</strong> ${entireCHAT[i].text}</p>
+                <p class="message"><span class="time">(${entireCHAT[i].time})</span> <strong>${entireCHAT[i].from}</strong> ${entireCHAT[i].text}</p>
             </div>
             `;
         }

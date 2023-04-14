@@ -211,8 +211,6 @@ body {
 
 .time {
     color: #AAAAAA;
-    margin-left: 8px;
-    margin-right: 8px;
 }
 
 .message {
@@ -220,6 +218,8 @@ body {
     margin-top: 12px;
     margin-bottom: 12px;
     word-break: break-word;
+    margin-left: 8px;
+    line-height: 20px;
 }
 
 .ENTERorEXIT {
