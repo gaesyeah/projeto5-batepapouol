@@ -385,5 +385,6 @@ function hover() {
     } else {
 
         changeBUTTON.classList.remove('inputONbutton');
+        changeBUTTON.classList.add('inputOUTbutton');
     }
 }
