@@ -66,6 +66,12 @@ body {
     margin-bottom: 2px;
     background-color: #FFFFFF;
 }
+.option:hover {
+    cursor: pointer;
+    background-color: rgba(213, 213, 213, 0.3);
+    transition-duration: 400ms;
+    border-radius: 10px;
+}
 /*-------*/
 .text_option {
     margin-bottom: 30px;
