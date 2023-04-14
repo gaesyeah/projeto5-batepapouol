@@ -266,11 +266,11 @@ body {
 }
 .inputAFTERmenu { /*está sendo usado pelo JS junto da classe message para formatar o texto que especifica para quem a mensagem será enviada*/
     overflow-y: auto;
-    height: 17px;
+    height: 28px;
     color: #505050;
     margin-left: 17px;
     margin-top: 4px;
-    margin-bottom: 8px;
+    margin-bottom: 0px;
 }
 .bottom_bar {
     position: fixed;
