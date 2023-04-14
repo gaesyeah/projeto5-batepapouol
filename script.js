@@ -62,6 +62,9 @@ function login_success(reply) {
 
     //chama a função user_status() a cada 5 segundos para verificar se o usuario está ativo, ou seja, digitando
     setInterval(user_status, 5000);
+
+    //chama a função para resetar a página a cada 3 segundos
+    setInterval(reset_saveCHAT, 3000);
 }
 function login_error(reply) {
 
@@ -153,8 +156,6 @@ function reset_saveCHAT() {
     const await_promise = axios.get('https://mock-api.driven.com.br/api/vm/uol/messages');
     await_promise.then(renderCHAT);
 }
-
-setInterval(reset_saveCHAT, 3000); //chama a função para resetar a página a cada 3 segundos (INICIA AO ENTRAR NA PAGINA MESMO)
 
 function renderCHAT(historyCHAT) {
 
