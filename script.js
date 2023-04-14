@@ -12,6 +12,11 @@ let SWITCHcheck, typeADDcheck;
 //(além das funções RESET_saveMENU e reset_saveCHAT que são chamadas a cada 10 e 3 segundos respectivamente, antes mesmo do login)
 function login() {
 
+    let test_input = document.querySelector('.login_input').value;
+    if (test_input == "") {
+        return; //para parar a execução da função caso o usuario tente logar sem nome
+    }
+
     //troca a interface de login pela de loading
     const hide_login = document.getElementById('remove');
     hide_login.classList.add('hide');
@@ -362,5 +367,23 @@ function onlineUSERS(users) {
                 <ion-icon class="check" name="checkmark-sharp"></ion-icon>
             </div>
         `;
+    }
+}
+
+
+setInterval(hover,100);
+
+function hover() {
+
+    let change = document.querySelector('.login_input').value;
+    let changeBUTTON = document.querySelector('.login_button');
+
+    if (change !== "") {
+
+        changeBUTTON.classList.add('inputONbutton');
+
+    } else {
+
+        changeBUTTON.classList.remove('inputONbutton');
     }
 }

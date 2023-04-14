@@ -170,6 +170,12 @@ body {
 .hide {
     display: none;
 }
+.inputONbutton {
+    color: #FFFFFF;
+    background-color: rgb(50, 212, 18);
+    transition-duration: 400ms;
+    cursor: pointer;
+}
 /*-----------------------------------------*/
 .messages_container {
     display: flex;
@@ -237,6 +243,11 @@ body {
     margin-right: 22px;        
     font-size: 48px;
 }
+.people_button:hover {
+    color: rgb(50, 212, 18);
+    transition-duration: 400ms;
+    cursor: pointer;
+}
 /*-----------------------------------------*/
 .column {
     display: flex;
@@ -264,6 +275,11 @@ body {
 .send_button {
     margin-right: 18px;
     font-size: 36px;
+}
+.send_button:hover {
+    color: rgb(50, 212, 18);
+    transition-duration: 400ms;
+    cursor: pointer;
 }
 
 .input_message {
