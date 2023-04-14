@@ -158,7 +158,7 @@ function renderCHAT(historyCHAT) {
                 <p class="message"><strong>${entireCHAT[i].from}</strong> para <strong>${entireCHAT[i].to}:</strong> ${entireCHAT[i].text}</p>
             </div>
         `;
-        //se for uma mensagem privada
+        //se for uma mensagem privada para mim
         } else if (
                 (entireCHAT[i].type === "private_message" && entireCHAT[i].from === user_name) 
                 || 
@@ -172,6 +172,10 @@ function renderCHAT(historyCHAT) {
                 <p class="message"><strong>${entireCHAT[i].from}</strong> reservadamente para <strong>${entireCHAT[i].to}:</strong> ${entireCHAT[i].text}</p>
             </div>
         `;
+        //se for uma mensagem privada E NÃO FOR PRA MIM
+        } else if (entireCHAT[i].type === "private_message" && entireCHAT[i].to !== user_name) {
+            
+            console.log('mensagem privada que não foi pra mim, foi enviada');
 
         } else { //se não for uma mensagem, OU SEJA, se entrou ou saiu (type: "status")
 
