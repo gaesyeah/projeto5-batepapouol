@@ -204,7 +204,6 @@ function toggle_menu() {
 function TOclicked(clicked) {
 
     //SÓ VAI ENTRAR NESSE IF APÓS O USUARIO JÁ TER CLICADO UMA VEZ, OU SEJA, NO SEGUNDO CLIQUE
-
     //se dentro da div com classe option, que está dentro da div com classe TO-select, tiver alguma div com classe .check_selected, a mesma será removida
     const VERIFYcheck = document.querySelector('.TO-select .check_selected');
     if (VERIFYcheck !== null) {
@@ -232,33 +231,13 @@ function TOclicked(clicked) {
         type = "message";
         console.log(type);
     }
-//------adição/mudança do texto da div bottom_bar, proxima ao input
-    CHANGEinput = document.querySelector('.column');
-
-    if (to !== "Todos" && type !== "message") {
-
-        CHANGEinput.innerHTML = `
-            <input class="input_message" type="text" placeholder="Escreva aqui..."></input>
-            <p class="message inputAFTERmenu">Enviando para ${to} (reservadamente)</p>
-        `;
-    } else if (to !== "Todos") {
-
-        CHANGEinput.innerHTML = `
-            <input class="input_message" type="text" placeholder="Escreva aqui..."></input>
-            <p class="message inputAFTERmenu">Enviando para ${to}</p>
-    `;
-    } else if (to === "Todos") {
-
-        CHANGEinput.innerHTML = `
-            <input class="input_message" type="text" placeholder="Escreva aqui..."></input>
-    `;
-    }
+    //------adição/mudança do texto da div bottom_bar, proxima ao input
+    CHANGEbottom_bar()
 }
 
 function TYPEclicked(clicked) {
 
     //SÓ VAI ENTRAR NESSE IF APÓS O USUARIO JÁ TER CLICADO UMA VEZ, OU SEJA, NO SEGUNDO CLIQUE
-    
     //se dentro da div com classe option, que está dentro da div com classe TYPE-select, tiver alguma div com classe .chack-selected, a mesma será removida
     const VERIFYcheck = document.querySelector('.TYPE-select .check_selected')
     if (VERIFYcheck !== null) {
@@ -301,6 +280,11 @@ function TYPEclicked(clicked) {
         console.log(type);
     }
     //------adição/mudança do texto da div bottom_bar, proxima ao input
+    CHANGEbottom_bar()
+}
+//chamada pelas funções onclick TOclicked e TYPEclicked
+function CHANGEbottom_bar() {
+
     CHANGEinput = document.querySelector('.column');
 
     if (to !== "Todos" && type !== "message") {
@@ -322,7 +306,6 @@ function TYPEclicked(clicked) {
     `;
     }
 }
-
 //--------------------------------------------------------------------------------
 
 function RESET_saveMENU() { //é chamada a cada 10 segundos e quando o usuario faz login
@@ -369,35 +352,45 @@ function onlineUSERS(users) {
         `;
     }
 //-------
-    //para resetar o valor de to
-    to = "Todos";
-    console.log(`${to}; O valor de to foi resetado após 10 segundos`);
-    //para resetar o valor de type
-    type = "message";
-    console.log(`${type}; O valor de type foi resetado após 10 segundos`);
+    if (to === "Todos") {
 
-    //para atualizar o texto para o valor padrão (Todos)
-    CHANGEinput = document.querySelector('.column');
-    CHANGEinput.innerHTML = `
-        <input class="input_message" type="text" placeholder="Escreva aqui..."></input>
-    `;
+        //para resetar o valor de to
+        //(NÃO FAZ NADA, JÁ QUE SÓ ENTRA NO IF SE ELE JÁ FOR IGUAL A "Todos")
+        /* to = "Todos";
+        console.log(`${to}; O valor de to foi resetado após 10 segundos`);
 
-    //realoca as checks após resetar, seguindo as regras das funções TOclicked(clicked) e TYPEclicked(clicked)
-    //nesse caso fazer isso funciona porque a div "Público" é a primeira da div com classe TYPE-select
-    typeSWITCHcheck = document.querySelector('.TYPE-select .check');
-    typeSWITCHcheck.classList.add('check_selected');
-    //a classe reset10s foi criada unicamente para servir esse proposito
-    const RMReservadamente = document.querySelector('.reset10s .check')
-    if (RMReservadamente !== null) {
+        //para resetar o valor de type
+        //( TAMBÉM NÃO FAZ NADA, JÁ QUE NÃO É POSSIVEL MANDAR MENSAGEM PRIVADA A "Todos")
+        type = "message";
+        console.log(`${type}; O valor de type foi resetado após 10 segundos`);
 
-        RMReservadamente.classList.remove('check_selected');
+        //para atualizar o texto para o valor padrão (Todos)
+        //(SE JÁ ESTÁ EM "Todos", NÃO HÁ PORQUE FAZER ISSO)
+        CHANGEinput = document.querySelector('.column');
+        CHANGEinput.innerHTML = `
+            <input class="input_message" type="text" placeholder="Escreva aqui..."></input>
+        `;
+
+        //(SE JÁ ESTÁ EM "Todos", E NÃO DÁ PRA MANDAR MENSAGEM PRIVADA A TODOS, NÃO HÁ PORQUE FAZER ISSO)
+        //realoca as checks após resetar, seguindo as regras das funções TOclicked(clicked) e TYPEclicked(clicked)
+        //nesse caso fazer isso funciona porque a div "Público" é a primeira da div com classe TYPE-select
+        typeSWITCHcheck = document.querySelector('.TYPE-select .check');
+        typeSWITCHcheck.classList.add('check_selected');
+        //a classe reset10s foi criada unicamente para servir esse proposito
+        const RMReservadamente = document.querySelector('.reset10s .check')
+        if (RMReservadamente !== null) {
+            //remove o check da "Reservadamente"
+            RMReservadamente.classList.remove('check_selected');
+        } */
+        
+        //para adicionar novamente o check na to Todos, já que a página fica resetando a cada 10s
+        //nesse caso fazer isso funciona porque a div "Todos" é a primeira da div com classe TO-select
+        toSWITCHcheck = document.querySelector('.TO-select .check');
+        toSWITCHcheck.classList.add('check_selected');
+    } else {
+
+        
     }
-    
-    //para adicionar novamente o check na to Todos, já que a página fica resetando a cada 10s
-    //nesse caso fazer isso funciona porque a div "Todos" é a primeira da div com classe TO-select
-    toSWITCHcheck = document.querySelector('.TO-select .check');
-    toSWITCHcheck.classList.add('check_selected');
-
 
 }
 
