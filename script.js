@@ -372,7 +372,7 @@ function onlineUSERS(users) {
     //para resetar o valor de to
     to = "Todos";
     console.log(`${to}; O valor de to foi resetado após 10 segundos`);
-    //
+    //para resetar o valor de type
     type = "message";
     console.log(`${type}; O valor de type foi resetado após 10 segundos`);
 
