@@ -372,16 +372,33 @@ function onlineUSERS(users) {
     //para resetar o valor de to
     to = "Todos";
     console.log(`${to}; O valor de to foi resetado após 10 segundos`);
+    //
+    type = "message";
+    console.log(`${type}; O valor de type foi resetado após 10 segundos`);
 
+    //para atualizar o texto para o valor padrão (Todos)
+    CHANGEinput = document.querySelector('.column');
+    CHANGEinput.innerHTML = `
+        <input class="input_message" type="text" placeholder="Escreva aqui..."></input>
+    `;
+
+    //realoca as checks após resetar, seguindo as regras das funções TOclicked(clicked) e TYPEclicked(clicked)
+    //nesse caso fazer isso funciona porque a div "Público" é a primeira da div com classe TYPE-select
+    typeSWITCHcheck = document.querySelector('.TYPE-select .check');
+    typeSWITCHcheck.classList.add('check_selected');
+    //a classe reset10s foi criada unicamente para servir esse proposito
+    const RMReservadamente = document.querySelector('.reset10s .check')
+    if (RMReservadamente !== null) {
+
+        RMReservadamente.classList.remove('check_selected');
+    }
+    
     //para adicionar novamente o check na to Todos, já que a página fica resetando a cada 10s
     //nesse caso fazer isso funciona porque a div "Todos" é a primeira da div com classe TO-select
     toSWITCHcheck = document.querySelector('.TO-select .check');
     toSWITCHcheck.classList.add('check_selected');
 
-    //para atualizar o texto para o valor padrão (Todos)
-    CHANGEinput.innerHTML = `
-        <input class="input_message" type="text" placeholder="Escreva aqui..."></input>
-    `;
+
 }
 
 //animação no botão de login
