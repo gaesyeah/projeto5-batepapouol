@@ -5,7 +5,7 @@ let message, user_name, entireCHAT, nameMENU, online;
 
 let to = "Todos";
 let type = "message";
-let SWITCHcheck, typeADDcheck;
+let toSWITCHcheck, typeSWITCHcheck, typeADDcheck, CHANGEinput;
 //--------------------------
 
 //COMEÇA AQUI, quando o usuario faz o login 
@@ -225,15 +225,15 @@ function TOclicked(clicked) {
         alert('Não é possivel enviar uma mensagem Privada para Todos')
 
         //nesse caso fazer isso funciona porque a div "Público" é a primeira da div com classe TYPE-select
-        SWITCHcheck = document.querySelector('.TYPE-select .check');
-        SWITCHcheck.classList.add('check_selected');
+        typeSWITCHcheck = document.querySelector('.TYPE-select .check');
+        typeSWITCHcheck.classList.add('check_selected');
         typeADDcheck.classList.remove('check_selected');
 
         type = "message";
         console.log(type);
     }
 //------adição/mudança do texto da div bottom_bar, proxima ao input
-    const CHANGEinput = document.querySelector('.column');
+    CHANGEinput = document.querySelector('.column');
 
     if (to !== "Todos" && type !== "message") {
 
@@ -284,13 +284,13 @@ function TYPEclicked(clicked) {
             alert('Não é possivel enviar uma mensagem Privada para Todos')
 
             //nesse caso fazer isso funciona porque a div "Público" é a primeira da div com classe TYPE-select
-            SWITCHcheck = document.querySelector('.TYPE-select .check');
-            SWITCHcheck.classList.add('check_selected');
+            typeSWITCHcheck = document.querySelector('.TYPE-select .check');
+            typeSWITCHcheck.classList.add('check_selected');
             typeADDcheck.classList.remove('check_selected');
 
-            //para adicionar novamente o check na to selecionada, já que a página fica resetando a cada 10s
-            //nesse caso fazer isso funciona porque a div "Todos" é a primeira da div com classe TO-select
-            const toSWITCHcheck = document.querySelector('.TO-select .check');
+            //para adicionar novamente o check na to Todos, nesse caso fazer isso 
+            //funciona porque a div "Todos" é a primeira da div com classe TO-select
+            toSWITCHcheck = document.querySelector('.TO-select .check');
             toSWITCHcheck.classList.add('check_selected');
 
             type = "message";
@@ -301,7 +301,7 @@ function TYPEclicked(clicked) {
         console.log(type);
     }
     //------adição/mudança do texto da div bottom_bar, proxima ao input
-    const CHANGEinput = document.querySelector('.column');
+    CHANGEinput = document.querySelector('.column');
 
     if (to !== "Todos" && type !== "message") {
 
@@ -368,6 +368,20 @@ function onlineUSERS(users) {
             </div>
         `;
     }
+//-------
+    //para resetar o valor de to
+    to = "Todos";
+    console.log(`${to}; O valor de to foi resetado após 10 segundos`);
+
+    //para adicionar novamente o check na to Todos, já que a página fica resetando a cada 10s
+    //nesse caso fazer isso funciona porque a div "Todos" é a primeira da div com classe TO-select
+    toSWITCHcheck = document.querySelector('.TO-select .check');
+    toSWITCHcheck.classList.add('check_selected');
+
+    //para atualizar o texto para o valor padrão (Todos)
+    CHANGEinput.innerHTML = `
+        <input class="input_message" type="text" placeholder="Escreva aqui..."></input>
+    `;
 }
 
 //animação no botão de login
