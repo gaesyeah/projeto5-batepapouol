@@ -3,7 +3,9 @@ axios.defaults.headers.common['Authorization'] = 'xXBbaHJJgCIsOXZfEH3Mf6s7';
 //VARIAVEIS GLOBAIS
 let message, user_name, entireCHAT, nameMENU, online;
 
-let to, type, SWITCHcheck, typeADDcheck;
+let to = "Todos";
+let type = "message";
+let SWITCHcheck, typeADDcheck;
 //--------------------------
 
 //COMEÇA AQUI, quando o usuario faz o login 
@@ -90,9 +92,9 @@ function send(){
 
     user_send = {
         from: user_name,
-        to: "Todos",
+        to: to,
         text: input_send,
-        type: "message" // ou "private_message" para o bônus
+        type: type 
     };
 
     //as funções send_sucess() e send_error() verificam se a mensagem foi enviada ou não
@@ -146,6 +148,21 @@ function renderCHAT(historyCHAT) {
                 <p class="message"><strong>${entireCHAT[i].from}</strong> para <strong>${entireCHAT[i].to}:</strong> ${entireCHAT[i].text}</p>
             </div>
         `;
+        //se for uma mensagem privada
+        } else if (
+                (entireCHAT[i].type === "private_message" && entireCHAT[i].from === user_name) 
+                || 
+                (entireCHAT[i].type === "private_message" && entireCHAT[i].to === user_name)
+            ) 
+        { 
+
+            message.innerHTML += `
+            <div class="message_box reservedMSG">
+                <p class="time">(${entireCHAT[i].time})</p>
+                <p class="message"><strong>${entireCHAT[i].from}</strong> reservadamente para <strong>${entireCHAT[i].to}:</strong> ${entireCHAT[i].text}</p>
+            </div>
+        `;
+
         } else { //se não for uma mensagem, OU SEJA, se entrou ou saiu (type: "status")
 
             message.innerHTML += `
@@ -153,7 +170,7 @@ function renderCHAT(historyCHAT) {
                 <p class="time">(${entireCHAT[i].time})</p>
                 <p class="message"><strong>${entireCHAT[i].from}</strong> ${entireCHAT[i].text}</p>
             </div>
-        `;
+            `;
         }
     }
 
@@ -209,9 +226,28 @@ function TOclicked(clicked) {
 
         type = "message";
         console.log(type);
-
     }
+//------adição/mudança do texto da div bottom_bar, proxima ao input
+    const CHANGEinput = document.querySelector('.column');
 
+    if (to !== "Todos" && type !== "message") {
+
+        CHANGEinput.innerHTML = `
+            <input class="input_message" type="text" placeholder="Escreva aqui..."></input>
+            <p class="message inputAFTERmenu">Enviando para ${to} (reservadamente)</p>
+        `;
+    } else if (to !== "Todos") {
+
+        CHANGEinput.innerHTML = `
+            <input class="input_message" type="text" placeholder="Escreva aqui..."></input>
+            <p class="message inputAFTERmenu">Enviando para ${to}</p>
+    `;
+    } else if (to === "Todos") {
+
+        CHANGEinput.innerHTML = `
+            <input class="input_message" type="text" placeholder="Escreva aqui..."></input>
+    `;
+    }
 }
 
 function TYPEclicked(clicked) {
@@ -259,7 +295,27 @@ function TYPEclicked(clicked) {
         type = "message";
         console.log(type);
     }
+    //------adição/mudança do texto da div bottom_bar, proxima ao input
+    const CHANGEinput = document.querySelector('.column');
 
+    if (to !== "Todos" && type !== "message") {
+
+        CHANGEinput.innerHTML = `
+            <input class="input_message" type="text" placeholder="Escreva aqui..."></input>
+            <p class="message inputAFTERmenu">Enviando para ${to} (reservadamente)</p>
+        `;
+    } else if (to !== "Todos") {
+
+        CHANGEinput.innerHTML = `
+            <input class="input_message" type="text" placeholder="Escreva aqui..."></input>
+            <p class="message inputAFTERmenu">Enviando para ${to}</p>
+    `;
+    } else if (to === "Todos") {
+
+        CHANGEinput.innerHTML = `
+            <input class="input_message" type="text" placeholder="Escreva aqui..."></input>
+    `;
+    }
 }
 
 //--------------------------------------------------------------------------------
