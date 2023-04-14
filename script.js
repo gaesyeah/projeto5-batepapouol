@@ -369,7 +369,15 @@ function onlineUSERS(users) {
         /*na linha 339 será renderizada a div já com check_selected
         então aqui será renderizada todas as divs EXCETO a com o mesmo
         nome dessa que já foi renderizada com check_selected*/
-        if (to !== online[i].name) {
+        if (to === online[i].name) {
+            //não renderiza nada
+            console.log(`Quem está online porém já selecionado: ${online[i].name} === ${to}`);
+
+        } else if (user_name === online[i].name) {
+
+            console.log('não dá para mandar mensagem para você mesmo');
+
+        } else if (to !== online[i].name) {
 
             console.log(`Online: ${online[i].name}`);
             
@@ -382,12 +390,7 @@ function onlineUSERS(users) {
                     <ion-icon class="check" name="checkmark-sharp"></ion-icon>
                 </div>
             `;
-        } else {
-            //não renderiza nada
-            console.log(`Quem está online porém já selecionado: ${online[i].name} === ${to}`);
-
-        }  
-
+        } 
     }
 
 }
