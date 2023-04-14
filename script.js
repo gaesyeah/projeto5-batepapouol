@@ -2,6 +2,8 @@ axios.defaults.headers.common['Authorization'] = 'xXBbaHJJgCIsOXZfEH3Mf6s7';
 
 //VARIAVEIS GLOBAIS
 let message, user_name, entireCHAT, nameMENU, online;
+
+let to, type, SWITCHcheck, typeADDcheck;
 //--------------------------
 
 //COMEÇA AQUI, quando o usuario faz o login 
@@ -35,7 +37,6 @@ function login() {
 function login_success(reply) {
 
     RESET_saveMENU(); //reseta e renderiza o TO do menu
-    //(BOTEI "TO" NO NOME DAS CLASSES HTML E EM ALGUMAS PARTES DO JS, MAS DESCOBRI DEPOIS QUE O CERTO É "FROM")
     reset_saveCHAT(); //reseta e renderiza o chat
 
     console.log(`${reply.status}; ${user_name} logou com sucesso`);
@@ -189,11 +190,28 @@ function TOclicked(clicked) {
     }
     
     //muda a cor do check para verde
-    const ADDcheck = clicked.querySelector('.check');
-    ADDcheck.classList.add('check_selected');
+    const toADDcheck = clicked.querySelector('.check');
+    toADDcheck.classList.add('check_selected');
 //------salva o texto numa variavel
-    const FROM = clicked.querySelector('.text_select').innerHTML;
-    console.log(FROM);
+    to = clicked.querySelector('.text_select').innerHTML;
+    console.log(to);
+//------
+    /* caso a variavel "to" for igual a "Todos" E a variavel type definidae pela função TYPEclicked(clicked) for igual a "private_message"
+    retire o check da div Reservadamente, mude o check para a div Público e altere o valor de type para "message"*/
+    if (to === "Todos" && type === "private_message") {
+
+        alert('Não é possivel enviar uma mensagem Privada para Todos')
+
+        //nesse caso fazer isso funciona porque a div "Público" é a primeira da div com classe TYPE-select
+        SWITCHcheck = document.querySelector('.TYPE-select .check');
+        SWITCHcheck.classList.add('check_selected');
+        typeADDcheck.classList.remove('check_selected');
+
+        type = "message";
+        console.log(type);
+
+    }
+
 }
 
 function TYPEclicked(clicked) {
@@ -207,11 +225,41 @@ function TYPEclicked(clicked) {
     }
     
     //muda a cor do check para verde
-    const ADDcheck = clicked.querySelector('.check');
-    ADDcheck.classList.add('check_selected');
+    typeADDcheck = clicked.querySelector('.check');
+    typeADDcheck.classList.add('check_selected');
 //------salva o texto numa variavel
-    const TYPE = clicked.querySelector('.text_select').innerHTML;
-    console.log(TYPE);
+    type = clicked.querySelector('.text_select').innerHTML;
+//------ 
+    //se o innerHTML da div clicada for igual a "Reservadamente, mude a variavel type para "private_message", que será usada ao enviar uma mensagem"
+    if (type === "Reservadamente") {
+
+        type = "private_message";
+        console.log(type);
+        
+        /*porém caso a variavel "to" definida pela função TOclicked(clicked) for igual a "Todos",
+        retire o check da div Reservadamente, mude o check para a div Público e altere o valor de type para "message"*/
+        if (to === "Todos") {
+
+            alert('Não é possivel enviar uma mensagem Privada para Todos')
+
+            //nesse caso fazer isso funciona porque a div "Público" é a primeira da div com classe TYPE-select
+            SWITCHcheck = document.querySelector('.TYPE-select .check');
+            SWITCHcheck.classList.add('check_selected');
+            typeADDcheck.classList.remove('check_selected');
+
+            //para adicionar novamente o check na to selecionada, já que a página fica resetando a cada 10s
+            //nesse caso fazer isso funciona porque a div "Todos" é a primeira da div com classe TO-select
+            const toSWITCHcheck = document.querySelector('.TO-select .check');
+            toSWITCHcheck.classList.add('check_selected');
+
+            type = "message";
+            console.log(type);
+        }
+    } else {
+        type = "message";
+        console.log(type);
+    }
+
 }
 
 //--------------------------------------------------------------------------------

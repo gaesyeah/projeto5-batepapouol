@@ -243,6 +243,10 @@ body {
     flex-direction: column;
     width: 83.5%;
 }
+.inputAFTERmenu { /*está sendo usado pelo JS junto da classe message para formatar o texto que especifica para quem a mensagem será enviada*/
+    color: #505050;
+    margin-left: 17px;
+}
 .bottom_bar {
     position: fixed;
     z-index: 1;
