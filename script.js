@@ -471,12 +471,14 @@ document.addEventListener("keypress", function (press) {
 
             if (user_name !== undefined) {
 
-                send();
+                const btn_send = document.querySelector('.send_button');
+                btn_send.click();
 
             } else {
 
-                login();
-                
+                const btn_login = document.querySelector('.login_button');
+                btn_login.click();
+
             }
         }
     }
