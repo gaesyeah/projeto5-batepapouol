@@ -374,9 +374,9 @@ function onlineUSERS(users) {
     PUBLICO SERÁ MARCADO E RESETADO, E O USUARIO SERÁ AVISADO*/
     if (to !== "Todos") {
 
-    let onlineOR_NOT = online.some(obj => obj.name === to);
+    let onlineOR_NOT = online.some(obj => obj.name === to); //retorna true ou false
 
-        if (onlineOR_NOT) {
+        if (onlineOR_NOT) { //se for true
 
             name.innerHTML += `
                 <div onclick="TOclicked(this)" class="option" data-test="participant">
@@ -388,7 +388,7 @@ function onlineUSERS(users) {
                 </div>
             `;
 
-        } else {
+        } else { //se for false
 
             alert(`${to} Não está mais online`);
 
