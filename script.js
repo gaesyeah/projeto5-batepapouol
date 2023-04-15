@@ -465,7 +465,7 @@ function greenBUTTON() {
 
 //--------------ENTER---------------
 
-document.addEventListener("keypress", function (press) {
+document.addEventListener("keypress", press => {
 
         if (press.key === "Enter") {
 
@@ -483,3 +483,4 @@ document.addEventListener("keypress", function (press) {
         }
     }
 );
+
