@@ -352,6 +352,11 @@ function RESET_saveMENU() { //é chamada a cada 10 segundos e quando o usuario f
 
 function onlineUSERS(users) {
 
+    //é guardado num array o nome de todos os usuarios online, RETORNADO pelo servidor na função RESET_saveMENU
+    online = [];
+    online = users.data;
+    //------------------
+
     let name = document.querySelector('.TO-select');
     //reseta o conteudo da div TO-select para incluir a opção padrão: Todos
     name.innerHTML = ` 
@@ -365,17 +370,42 @@ function onlineUSERS(users) {
     `;
 
     //para renderizar na tela o to previamente selecionado na função TOclicked(clicked). JÁ COM A CLASSE check_selected
-    //INDEPENDENTE DELE ESTAR ONLINE OU NÃO
+    /*PORÉM CASO ELE NÃO ESTEJA MAIS ONLINE, O MESMO NÃO SERÁ RENDERIZADO, TODOS SERÁ MARCADO E RESETADO, 
+    PUBLICO SERÁ MARCADO E RESETADO, E O USUARIO SERÁ AVISADO*/
     if (to !== "Todos") {
-        name.innerHTML += `
-            <div onclick="TOclicked(this)" class="option" data-test="participant">
-                <div class="adjust">
-                    <ion-icon class="icon_size" name="person-circle-sharp"></ion-icon>
-                    <p class="text_option text_select">${to}</p>
+
+    let onlineOR_NOT = online.some(obj => obj.name === to);
+
+        if (onlineOR_NOT) {
+
+            name.innerHTML += `
+                <div onclick="TOclicked(this)" class="option" data-test="participant">
+                    <div class="adjust">
+                        <ion-icon class="icon_size" name="person-circle-sharp"></ion-icon>
+                        <p class="text_option text_select">${to}</p>
+                    </div>
+                    <ion-icon class="check check_selected" name="checkmark-sharp" data-test="check"></ion-icon>
                 </div>
-                <ion-icon class="check check_selected" name="checkmark-sharp" data-test="check"></ion-icon>
-            </div>
-        `;
+            `;
+
+        } else {
+
+            alert(`${to} Não está mais online`);
+
+            CHANGEinput.innerHTML = `
+                <input class="input_message" type="text" placeholder="Escreva aqui..."></input>
+            `;
+
+            to = "Todos";
+            toSWITCHcheck = document.querySelector('.TO-select .check');
+            toSWITCHcheck.classList.add('check_selected');
+
+            type = "message";
+            typeADDcheck.classList.remove('check_selected');
+            typeSWITCHcheck.classList.add('check_selected');
+
+        }
+
     } else {
 
         //adiciona novamente o check na to Todos, já que a página fica resetando a cada 10s
@@ -386,12 +416,9 @@ function onlineUSERS(users) {
 
     }
 //------------------------------------
-    //é guardado num array o nome de todos os usuarios online, RETORNADO pelo servidor na função RESET_saveMENU
-    online = [];
-    online = users.data;
     //é renderizado na tela as divs com os nomes dos usuarios online
     for(i=0; i<online.length; i++) {
-        /*na linha 367 será renderizada a div já com check_selected
+        /*na linha 374 será renderizada a div já com check_selected
         então aqui será renderizada todas as divs EXCETO a com o mesmo
         nome dessa que já foi renderizada com check_selected*/
         if (to === online[i].name) {
@@ -399,7 +426,7 @@ function onlineUSERS(users) {
             console.log(`Online: ${online[i].name} === ${to}\nPorém já selecionado, por isso, como esperado não foi renderizado repetidamente(uma segunda vez)`);
 
         } else if (user_name === online[i].name) {
-
+            //não renderiza eu mesmo, o user_name
             console.log(`Online: ${online[i].name}\nPorém como deve ser, a div com meu pŕoprio nome NÃO foi renderizada no menu`);
 
         } else if (to !== online[i].name) {
