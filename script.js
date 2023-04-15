@@ -400,7 +400,7 @@ function onlineUSERS(users) {
 
         } else if (user_name === online[i].name) {
 
-            console.log('como deve ser, div com meu pŕoprio nome NÃO foi renderizada no menu');
+            console.log(`Online: ${online[i].name}\nPorém como deve ser, a div com meu pŕoprio nome NÃO foi renderizada no menu`);
 
         } else if (to !== online[i].name) {
 
