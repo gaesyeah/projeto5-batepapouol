@@ -391,7 +391,7 @@ function onlineUSERS(users) {
     online = users.data;
     //é renderizado na tela as divs com os nomes dos usuarios online
     for(i=0; i<online.length; i++) {
-        /*na linha 339 será renderizada a div já com check_selected
+        /*na linha 367 será renderizada a div já com check_selected
         então aqui será renderizada todas as divs EXCETO a com o mesmo
         nome dessa que já foi renderizada com check_selected*/
         if (to === online[i].name) {
