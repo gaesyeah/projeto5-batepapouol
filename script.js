@@ -396,7 +396,7 @@ function onlineUSERS(users) {
         nome dessa que já foi renderizada com check_selected*/
         if (to === online[i].name) {
             //não renderiza nada
-            console.log(`Online: ${online[i].name} === ${to}\n porém já selecionado, por isso, como esperado não foi renderizado repetidamente(uma segunda vez)`);
+            console.log(`Online: ${online[i].name} === ${to}\nPorém já selecionado, por isso, como esperado não foi renderizado repetidamente(uma segunda vez)`);
 
         } else if (user_name === online[i].name) {
 
