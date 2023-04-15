@@ -13,7 +13,7 @@ let toSWITCHcheck, typeSWITCHcheck, typeADDcheck, CHANGEinput;
 function login() {
 
     let test_input = document.querySelector('.login_input').value;
-    if (test_input == "") {
+    if (test_input === "") {
         return; //para parar a execução da função caso o usuario tente logar sem nome
     }
 
@@ -121,7 +121,7 @@ function send(){
     const input = document.querySelector('.input_message');
     const input_send = input.value;
 
-    if (input_send == "") {
+    if (input_send === "") {
         return; //para parar a execuçao da função caso o usuario envie uma mensagem "vazia"
     }
 
@@ -396,7 +396,7 @@ function onlineUSERS(users) {
         nome dessa que já foi renderizada com check_selected*/
         if (to === online[i].name) {
             //não renderiza nada
-            console.log(`Quem está online porém já selecionado: ${online[i].name} === ${to}, por isso, como esperado não foi renderizado repetidamente(uma segunda vez)`);
+            console.log(`Online: ${online[i].name} === ${to}\n porém já selecionado, por isso, como esperado não foi renderizado repetidamente(uma segunda vez)`);
 
         } else if (user_name === online[i].name) {
 
