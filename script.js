@@ -198,7 +198,7 @@ function renderCHAT(historyCHAT) {
         //se for uma mensagem privada E NÃO FOR PRA MIM
         } else if (entireCHAT[i].type === "private_message" && entireCHAT[i].to !== user_name) {
             
-            console.log('mensagem privada que não foi "to" mim foi enviada, por isso, como esperado não foi renderizada');
+            console.log('há uma ou mais mensagens privadas que não foram "to" mim no chat, por isso, como esperado não foi renderizada');
 
         } else { //se não for uma mensagem, OU SEJA, se entrou ou saiu (type: "status")
 
