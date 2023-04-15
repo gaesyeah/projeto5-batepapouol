@@ -462,3 +462,22 @@ function greenBUTTON() {
         changeBUTTON.classList.add('inputOUTbutton');
     }
 }
+
+//--------------ENTER---------------
+
+document.addEventListener("keypress", function (press) {
+
+        if (press.key === "Enter") {
+
+            if (user_name !== undefined) {
+
+                send();
+
+            } else {
+
+                login();
+                
+            }
+        }
+    }
+);
