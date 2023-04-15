@@ -16,7 +16,7 @@
 <body>
     <!------------------------------>
     <div class="side_bar hide">
-        <div onclick="toggle_menu() "class="OUT_bar"></div>
+        <div onclick="toggle_menu() "class="OUT_bar" data-test="overlay"></div>
         <div class="IN_bar">
             <div class="TO-box box">
                 <p class="text_option">Escolha um contato<br>para enviar mensagem:<br></p>
@@ -27,14 +27,14 @@
             <div class="TYPE-box box">
                 <p class="text_option">Escolha a visiblidade:</p>
                 <div class="TYPE-select select">
-                    <div onclick="TYPEclicked(this)" class="option" >
+                    <div onclick="TYPEclicked(this)" class="option" data-test="public">
                         <div class="adjust">
                             <ion-icon class="icon_size" name="lock-open-sharp"></ion-icon>
                             <p class="text_option text_select">Público</p>
                         </div>
                         <ion-icon class="check" name="checkmark-sharp"></ion-icon>
                     </div>
-                    <div onclick="TYPEclicked(this)" class="option reset10s" >
+                    <div onclick="TYPEclicked(this)" class="option reset10s" data-test="private">
                         <div class="adjust">
                             <ion-icon class="icon_size" name="lock-closed-sharp"></ion-icon>
                             <p class="text_option text_select">Reservadamente</p>
@@ -50,8 +50,8 @@
         <div class="login_box">
             <img class="login_logo"src="./images/logo 2.png" />
             <div id="remove" class="box_to_toggle">
-                <input class="login_input" placeholder="Digite seu nome"></input>
-                <div onclick="login()" class="login_button">Entrar</div>
+                <input class="login_input" placeholder="Digite seu nome" data-test="input-name"></input>
+                <div onclick="login()" class="login_button" data-test="send-name">Entrar</div>
             </div>
             <div id="add" class ="box_to_toggle hide">
                 <img class ="loading_gif"src="./images/loading-gif.gif" />
@@ -62,7 +62,7 @@
     <!------------------------------>
     <div class="top_bar">
         <img class ="logo" src="./images/logo 1.png" />
-        <ion-icon onclick="toggle_menu()" class ="people_button" name="people"></ion-icon>
+        <ion-icon onclick="toggle_menu()" class ="people_button" name="people" data-test="open-participants"></ion-icon>
     </div>
 
     <div class ="messages_container">
@@ -71,9 +71,9 @@
 
     <div class="bottom_bar">
         <div class="column">
-            <input class="input_message" type="text" placeholder="Escreva aqui..."></input>
+            <input class="input_message" type="text" placeholder="Escreva aqui..." data-test="input-message"></input>
         </div>
-        <ion-icon onclick="send()" class="send_button inputONsend_button inputOUTsend_button" name="paper-plane-outline"></ion-icon>
+        <ion-icon onclick="send()" class="send_button inputONsend_button inputOUTsend_button" name="paper-plane-outline" data-test="send-message"></ion-icon>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>

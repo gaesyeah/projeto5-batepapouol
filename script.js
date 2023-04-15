@@ -178,7 +178,7 @@ function renderCHAT(historyCHAT) {
         if (["Message", "message", "Message:", "message:"].includes(entireCHAT[i].type)) { //se for uma mensagem
 
             message.innerHTML += `
-            <div class="message_box">
+            <div class="message_box" data-test="message">
                 <p class="message"><span class="time">(${entireCHAT[i].time})</span> <strong>${entireCHAT[i].from}</strong> para <strong>${entireCHAT[i].to}:</strong> ${entireCHAT[i].text}</p>
             </div>
         `;
@@ -191,7 +191,7 @@ function renderCHAT(historyCHAT) {
         { 
 
             message.innerHTML += `
-            <div class="message_box reservedMSG">
+            <div class="message_box reservedMSG" data-test="message">
                 <p class="message"><span class="time">(${entireCHAT[i].time})</span> <strong>${entireCHAT[i].from}</strong> reservadamente para <strong>${entireCHAT[i].to}:</strong> ${entireCHAT[i].text}</p>
             </div>
         `;
@@ -203,7 +203,7 @@ function renderCHAT(historyCHAT) {
         } else { //se não for uma mensagem, OU SEJA, se entrou ou saiu (type: "status")
 
             message.innerHTML += `
-            <div class="message_box ENTERorEXIT">
+            <div class="message_box ENTERorEXIT" data-test="message">
                 <p class="message"><span class="time">(${entireCHAT[i].time})</span> <strong>${entireCHAT[i].from}</strong> ${entireCHAT[i].text}</p>
             </div>
             `;
@@ -322,13 +322,13 @@ function CHANGEbottom_bar() {
 
         CHANGEinput.innerHTML = `
             <input class="input_message" type="text" placeholder="Escreva aqui..."></input>
-            <p class="message inputAFTERmenu">Enviando para ${to} (reservadamente)</p>
+            <p class="message inputAFTERmenu" data-test="recipient">Enviando para ${to} (reservadamente)</p>
         `;
     } else if (to !== "Todos") {
 
         CHANGEinput.innerHTML = `
             <input class="input_message" type="text" placeholder="Escreva aqui..."></input>
-            <p class="message inputAFTERmenu">Enviando para ${to}</p>
+            <p class="message inputAFTERmenu" data-test="recipient">Enviando para ${to}</p>
     `;
     } else if (to === "Todos") {
 
@@ -355,12 +355,12 @@ function onlineUSERS(users) {
     let name = document.querySelector('.TO-select');
     //reseta o conteudo da div TO-select para incluir a opção padrão: Todos
     name.innerHTML = ` 
-        <div onclick="TOclicked(this)" class="option" >
+        <div onclick="TOclicked(this)" class="option" data-test="all">
             <div class="adjust">
                 <ion-icon class="icon_size" name="people"></ion-icon>
                 <p class="text_option text_select">Todos</p>
             </div>
-            <ion-icon class="check" name="checkmark-sharp"></ion-icon>
+            <ion-icon class="check" name="checkmark-sharp" data-test="check"></ion-icon>
         </div>
     `;
 
@@ -368,12 +368,12 @@ function onlineUSERS(users) {
     //INDEPENDENTE DELE ESTAR ONLINE OU NÃO
     if (to !== "Todos") {
         name.innerHTML += `
-            <div onclick="TOclicked(this)" class="option" >
+            <div onclick="TOclicked(this)" class="option" data-test="participant">
                 <div class="adjust">
                     <ion-icon class="icon_size" name="person-circle-sharp"></ion-icon>
                     <p class="text_option text_select">${to}</p>
                 </div>
-                <ion-icon class="check check_selected" name="checkmark-sharp"></ion-icon>
+                <ion-icon class="check check_selected" name="checkmark-sharp" data-test="check"></ion-icon>
             </div>
         `;
     } else {
@@ -407,12 +407,12 @@ function onlineUSERS(users) {
             console.log(`Online: ${online[i].name}`);
             
             name.innerHTML += `
-                <div onclick="TOclicked(this)" class="option" >
+                <div onclick="TOclicked(this)" class="option" data-test="participant">
                     <div class="adjust">
                         <ion-icon class="icon_size" name="person-circle-sharp"></ion-icon>
                         <p class="text_option text_select">${online[i].name}</p>
                     </div>
-                    <ion-icon class="check" name="checkmark-sharp"></ion-icon>
+                    <ion-icon class="check" name="checkmark-sharp" data-test="check"></ion-icon>
                 </div>
             `;
         } 
