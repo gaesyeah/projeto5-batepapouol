@@ -511,3 +511,8 @@ document.addEventListener("keypress", press => {
     }
 );
 
+//reinicia a página quando o usuario clica na logo
+function RE_login() {
+    window.location.reload();
+}
+
